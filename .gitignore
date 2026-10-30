@@ -1,0 +1,7 @@
+local.properties
+apks/
+build/
+app/build/
+.gradle/
+*.iml
+app/nz1.keystore

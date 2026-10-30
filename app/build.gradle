@@ -1,0 +1,40 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'labs.nz1.freetv'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "labs.nz1.freetv"
+        minSdk 26          // Android 8.0 floor — box is SDK 29, covers other boxes too
+        targetSdk 33       // 34 would force PLAY media-button service for TV apps; 33 avoids that
+        versionCode 7
+        versionName "1.7"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("nz1.keystore")
+            storePassword "nz1freetv2026"
+            keyAlias "nz1freetv"
+            keyPassword "nz1freetv2026"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+// ZERO runtime dependencies — pure android.* framework APIs only.
+dependencies {}
